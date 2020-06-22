@@ -21,7 +21,7 @@ const userSchema = Yup.object().shape({
     .max(50),
   senha: Yup.string()
     .required()
-    .max(10),
+    .max(20),
   email: Yup.string()
     .email()
     .required(50),
@@ -110,10 +110,12 @@ class UserControler {
        de usuário; definindo o tamanho de 10 registros (paginação)
       */
 
-      return await User.find({})
+      const users = await User.find({})
         .limit(10)
         .lean()
         .exec();
+
+      return res.json(users);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }
@@ -182,7 +184,7 @@ class UserControler {
         .lean()
         .exec();
 
-      return res.json(user);
+      return res.json(req.body);
     } catch (err) {
       return res.status(400).json({ error: err.message });
     }

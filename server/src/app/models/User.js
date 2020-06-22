@@ -12,7 +12,7 @@ const useSchema = new Schema(
     senha: {
       type: String,
       required: true,
-      maxlength: 10,
+      maxlength: 15,
     },
     email: {
       type: String,
